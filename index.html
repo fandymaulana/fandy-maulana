@@ -111,6 +111,7 @@ nav ul{
 display:flex;
 gap:25px;
 list-style:none;
+align-items:center;
 }
 
 nav ul li a{
@@ -122,6 +123,21 @@ transition:0.3s;
 
 nav ul li a:hover{
 color:#ff8fab;
+}
+
+/* Nav Order Button Accent */
+nav ul li .nav-order-btn {
+background: linear-gradient(45deg,#ff8fab,#ffb3c6);
+color: white;
+padding: 8px 16px;
+border-radius: 20px;
+box-shadow: 0 4px 10px rgba(255,143,171,0.2);
+}
+
+nav ul li .nav-order-btn:hover {
+color: white;
+transform: translateY(-2px);
+box-shadow: 0 6px 15px rgba(255,143,171,0.3);
 }
 
 /* HERO */
@@ -316,14 +332,18 @@ font-size:18px;
 /* CONTACT */
 .contact-box{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
 }
 
 .contact-card{
-padding:40px;
+padding:30px 20px;
 text-align:center;
 transition:all 0.4s ease;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 }
 
 .contact-card:hover{
@@ -331,20 +351,35 @@ transform:translateY(-8px);
 box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
-.contact-card i{
-font-size:55px;
-margin-bottom:20px;
+.contact-card i, .contact-card .emoji-icon{
+font-size:50px;
+margin-bottom:15px;
+line-height: 1;
+}
+
+.contact-card .emoji-icon {
+display: inline-block;
 }
 
 .fa-whatsapp{ color:#25D366; }
 .fa-location-dot{ color:#ff4f81; }
+.fa-instagram{ color:#E1306C; }
+.fa-tiktok{ color:#000000; }
+
+.contact-card h3{
+font-size: 20px;
+color: #333;
+margin-bottom: 5px;
+}
 
 .contact-card a{
 text-decoration:none;
 color:#444;
 font-weight:600;
-line-height:1.8;
+line-height:1.5;
 transition: 0.3s;
+font-size: 15px;
+word-break: break-all;
 }
 
 .contact-card a:hover {
@@ -398,6 +433,7 @@ nav ul{ flex-wrap:wrap; justify-content:center; }
 <li><a href="#profil">Profil</a></li>
 <li><a href="#menu">Menu</a></li>
 <li><a href="#kontak">Kontak</a></li>
+<li><a href="https://fandymaulana.github.io/pemesanan-produk/" target="_blank" class="nav-order-btn">📒 Pesan Sekarang</a></li>
 </ul>
 </nav>
 
@@ -512,24 +548,43 @@ coklat, dan aneka cemilan favorit.
 
 <section id="kontak">
 <div class="title">
-<h2>Kontak Kami</h2>
-<p>Hubungi dan Kunjungi Cha Ice</p>
+<h2>Hubungi & Ikuti Kami</h2>
+<p>Hubungi Pesanan, Sosial Media, dan Kunjungi Cha Ice</p>
 </div>
 <div class="contact-box">
+
+<div class="contact-card glass">
+<div class="emoji-icon">📒</div>
+<h3>Formulir Pemesanan</h3>
+<a href="https://fandymaulana.github.io/pemesanan-produk/" target="_blank">Isi Form Pesanan</a>
+</div>
+
 <div class="contact-card glass">
 <i class="fa-brands fa-whatsapp"></i>
 <h3>WhatsApp</h3>
-<br>
 <a href="https://wa.me/6282142767632" target="_blank">+62 821-4276-7632</a>
 </div>
+
+<div class="contact-card glass">
+<i class="fa-brands fa-instagram"></i>
+<h3>Instagram</h3>
+<a href="https://www.instagram.com/chaice.id?igsh=MmxuOWkwMHcyb2lr" target="_blank">@chaice.id</a>
+</div>
+
+<div class="contact-card glass">
+<i class="fa-brands fa-tiktok"></i>
+<h3>TikTok</h3>
+<a href="https://www.tiktok.com/@fantastis4.chaice?_r=1&_t=ZS-96U6GAoIKtL" target="_blank">@fantastis4.chaice</a>
+</div>
+
 <div class="contact-card glass">
 <i class="fa-solid fa-location-dot"></i>
 <h3>Alamat</h3>
-<br>
 <a href="https://maps.app.goo.gl/nVUZ2sQsa9KVfgk36" target="_blank">
-Jalan Raya Pamotan, Kecamatan Dampit, Kabupaten Malang
+Jalan Raya Pamotan, Dampit, Malang
 </a>
 </div>
+
 </div>
 </section>
 
@@ -539,15 +594,11 @@ Jalan Raya Pamotan, Kecamatan Dampit, Kabupaten Malang
 
 <script>
 function playWaterSound() {
-    // Membuat audio synthesizer gelembung air (blup) secara realtime
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // Nada Utama
     const oscillator = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
     
     oscillator.type = 'sine';
-    // Frekuensi meloncat naik dengan cepat meniru suara gelembung air "blup"
     oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
     oscillator.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.15);
     
